@@ -1,0 +1,80 @@
+﻿@using CRUDRepositoryPatternCF.Models.ViewModel
+@using CRUDRepo.Entity
+@model ProductViewModel
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddProduct</h2>
+@using (Html.BeginForm("AddProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <head>
+        <title>jQuery Check if string empty or null</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+        <script type="text/javascript">
+
+        $(function() {
+            $('#btnCheck').click(function() {
+                var txt = $('#txtProductName');
+                var txtPhoto = $('#photo');
+                if (txt.val() != null && txt.val() != '') {
+
+
+
+                } else {
+                    alert('Please enter ProductName')
+                    //document.location.reload(true)
+                }
+                if (txtPhoto.val() != null && txtPhoto.val() != '') {
+
+                }
+                else {
+                    alert('Please choose photo')
+                }
+            })
+        });
+        </script>
+    </head>
+
+    <fieldset>
+        <legend>Product</legend>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Product.ProductName)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Product.ProductName, new { htmlAttributes = new { @class = "form-control", @id = "txtProductName" } })
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Product.Photo)
+        </div>
+        <div>
+            <input type="file" name="photo" id="photo" />
+        </div>
+
+        <div>
+
+            @Html.DisplayNameFor(model => model.Product.Category)
+        </div>
+        <div>
+            @Html.DropDownListFor(model => model.Product.CategoryId, Model.CategoryList)
+        </div>
+
+        <div>
+            Brand
+            @Html.DisplayNameFor(model => model.Product.Brands)
+        </div>
+        <div>
+            @Html.DropDownListFor(model => model.Product.BrandId, Model.BrandList)
+        </div>
+
+        <div>
+            <input type="submit" value="Create" class="btn btn-success" id="btnCheck" />
+        </div>
+    </fieldset>
+}
+
+

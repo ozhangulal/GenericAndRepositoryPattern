@@ -1,0 +1,63 @@
+﻿@using CRUDRepositoryPatternCF.Models.ViewModel
+@using CRUDRepo.Entity
+@model ProductViewModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div>
+        @ViewBag.Mesaj
+    </div>
+
+    <fieldset>
+        <legend>Product</legend>
+
+        @Html.HiddenFor(model => model.Product.ProductId)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Product.ProductName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Product.ProductName)
+            @Html.ValidationMessageFor(model => model.Product.ProductName)
+        </div>
+
+        <div class="editor-label">
+            
+            @Html.LabelFor(model => model.Product.Brands)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Product.BrandId, Model.BrandList)
+            @Html.ValidationMessageFor(model => model.Product.BrandId)
+        </div>
+
+        <div class="editor-label">
+            Category
+            @Html.LabelFor(model => model.Product.Category)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Product.CategoryId, Model.CategoryList)
+            @Html.ValidationMessageFor(model => model.Product.CategoryId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Product.Photo)
+        </div>
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.Product.Photo)
+            <input type="file" name="photo" />
+            @Html.ValidationMessageFor(model => model.Product.Photo)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CRUDRepo.Entity.Product>
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List</h2>
+<div>
+    @ViewBag.Mesaj
+</div>
+<table class="table table-hover" border="1">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </th>
+        <th>
+            
+            @Html.DisplayNameFor(model => model.Brands.BrandName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            Edit & Delete
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brands.BrandName)
+            </td>
+            <td>
+                <img src="~/Upload/@item.Photo" width="100" height="100" class="img-circle" />
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId })|
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+            </td>
+        </tr>
+    }
+</table>
